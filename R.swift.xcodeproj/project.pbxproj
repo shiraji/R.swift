@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3406F9501DB64E8C00351D0E /* IgnoreFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406F94F1DB64E8C00351D0E /* IgnoreFile.swift */; };
+		3406F9511DB65FAB00351D0E /* IgnoreFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406F94F1DB64E8C00351D0E /* IgnoreFile.swift */; };
 		5D45C2191CA12913000B8DC9 /* StringsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D997C941C7C291900B2F376 /* StringsGenerator.swift */; };
 		5D997C951C7C291900B2F376 /* StringsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D997C941C7C291900B2F376 /* StringsGenerator.swift */; };
 		D5646DE41BE2016E0034F4D7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5646DE11BE2016E0034F4D7 /* Extensions.swift */; };
@@ -111,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3406F94F1DB64E8C00351D0E /* IgnoreFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoreFile.swift; sourceTree = "<group>"; };
 		5D997C941C7C291900B2F376 /* StringsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsGenerator.swift; sourceTree = "<group>"; };
 		D5646DE11BE2016E0034F4D7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5646DE21BE2016E0034F4D7 /* PBXObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBXObject.swift; sourceTree = "<group>"; };
@@ -226,6 +229,7 @@
 		D5B7997B1C1B06F5009EA901 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				3406F94F1DB64E8C00351D0E /* IgnoreFile.swift */,
 				D5B7997E1C1B07EB009EA901 /* ErrorOutput.swift */,
 				D5B7997C1C1B07C3009EA901 /* SwiftIdentifier.swift */,
 				D56F923E1C2942B400177FF7 /* Struct+ChildValidation.swift */,
@@ -485,6 +489,7 @@
 				D5B799801C1B0943009EA901 /* SwiftIdentifier.swift in Sources */,
 				D5B799711C199755009EA901 /* FontGenerator.swift in Sources */,
 				D586D1C61BE20D8600F18FEC /* Extensions.swift in Sources */,
+				3406F9511DB65FAB00351D0E /* IgnoreFile.swift in Sources */,
 				D586D1C81BE20D8600F18FEC /* Serialization.swift in Sources */,
 				E24720CC1C96B6AB00DF291D /* ColorGenerator.swift in Sources */,
 				D5B799761C199755009EA901 /* SegueGenerator.swift in Sources */,
@@ -535,6 +540,7 @@
 				D5B799641C19937C009EA901 /* ImageGenerator.swift in Sources */,
 				D5646DE41BE2016E0034F4D7 /* Extensions.swift in Sources */,
 				D5B7996A1C1993E3009EA901 /* NibGenerator.swift in Sources */,
+				3406F9501DB64E8C00351D0E /* IgnoreFile.swift in Sources */,
 				E22D43631C9582CA00692FFF /* ColorGenerator.swift in Sources */,
 				D5646DE51BE2016E0034F4D7 /* PBXObject.swift in Sources */,
 				D56DC76D1C41758800623437 /* AccessModifier.swift in Sources */,
