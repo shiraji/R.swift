@@ -46,6 +46,12 @@ private let versionOption = Option(
   helpDescription: "Prints version information about this release."
 )
 
+private let rswiftignore = Option(
+  trigger: .long("rswiftignore"),
+  numberOfParameters: 1,
+  helpDescription: "Path to pattern file that describes files that should be ignored."
+)
+
 private let xcodeprojOption = Option(
   trigger: .mixed("p", "xcodeproj"),
   numberOfParameters: 1,
@@ -89,6 +95,7 @@ private let sdkRootOption = Option(
 
 private let AllOptions = [
   versionOption,
+  rswiftignore,
   xcodeprojOption,
   targetOption,
   bundleIdentifierOption,
@@ -101,6 +108,7 @@ private let AllOptions = [
 
 struct CallInformation {
   let outputURL: URL
+  let rswiftignoreURL: URL?
 
   let xcodeprojURL: URL
   let targetName: String
@@ -132,7 +140,7 @@ struct CallInformation {
         throw InputParsingError.userRequestsVersionInformation(helpString: "\(commandName) (R.swift) \(version)")
       }
 
-      guard let outputPath = extraArguments.first , extraArguments.count == 1 else {
+      guard let outputPath = extraArguments.first, extraArguments.count == 1 else {
         throw InputParsingError.illegalOption(
           error: "Output folder for the 'R.generated.swift' file is mandatory as last argument.",
           helpString: optionParser.helpStringForCommandName(commandName)
@@ -159,6 +167,9 @@ struct CallInformation {
       bundleIdentifier = try getFirstArgumentForOption(bundleIdentifierOption, environment["PRODUCT_BUNDLE_IDENTIFIER"])
 
       productModuleName = try getFirstArgumentForOption(productModuleNameOption, environment["PRODUCT_MODULE_NAME"])
+
+      let rswiftignorePath = try getFirstArgumentForOption(rswiftignore, nil)
+      rswiftignoreURL = URL(fileURLWithPath: rswiftignorePath)
 
       let buildProductsDirPath = try getFirstArgumentForOption(buildProductsDirOption, environment["BUILT_PRODUCTS_DIR"])
       buildProductsDirURL = URL(fileURLWithPath: buildProductsDirPath)
