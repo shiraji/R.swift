@@ -14,6 +14,11 @@ let IndentationString = "  "
 let ResourceFilename = "R.generated.swift"
 
 do {
+  
+  let arguments :String[] = NSProcessInfo.processInfo().arguments.map{String($0 as NSString)}
+  
+  println(arguments)
+  
   let callInformation = try CallInformation(processInfo: ProcessInfo())
 
   let xcodeproj = try Xcodeproj(url: callInformation.xcodeprojURL)
