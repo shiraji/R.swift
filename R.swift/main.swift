@@ -13,13 +13,28 @@ let IndentationString = "  "
 
 let ResourceFilename = "R.generated.swift"
 
+private func isValidURL(ignoreFile : IgnoreFile?, url: NSURL) -> Bool {
+  if let ignoreFile = ignoreFile {
+    return !ignoreFile.match(url: url)
+  } else {
+    return true
+  }
+}
+
 do {
   let callInformation = try CallInformation(processInfo: ProcessInfo())
 
   let xcodeproj = try Xcodeproj(url: callInformation.xcodeprojURL)
+
+  var ignoreFile : IgnoreFile? = nil
+  if let rswiftignoreURL = callInformation.rswiftignoreURL {
+    ignoreFile = try IgnoreFile(ignoreFileURL: rswiftignoreURL)
+  }
+
   let resourceURLs = try xcodeproj.resourcePathsForTarget(callInformation.targetName)
     .map(pathResolver(with: callInformation.URLForSourceTreeFolder))
     .flatMap { $0 }
+    .filter { isValidURL(ignoreFile: ignoreFile, url: $0 as NSURL) }
 
   let resources = Resources(resourceURLs: resourceURLs, fileManager: FileManager.default)
 
