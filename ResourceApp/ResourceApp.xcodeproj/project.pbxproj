@@ -778,7 +778,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/rswift\" \"$SRCROOT\" -ignore \"rswift.ignore\" > \"$SRCROOT/rswift.log\"";
+			shellScript = "\"$SRCROOT/rswift\" \"$SRCROOT\" --ignore \"rswift.ignore\" > \"$SRCROOT/rswift.log\"";
 		};
 		DEF559A61CA487D6009B8C51 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;

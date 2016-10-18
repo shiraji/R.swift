@@ -91,6 +91,11 @@ private let sdkRootOption = Option(
   numberOfParameters: 1, 
   helpDescription: "SDK root folder that Xcode uses during build, will default to the environment variable SDKROOT."
 )
+private let ignoreOption = Option(
+  trigger: .long("ignore"),
+  numberOfParameters: 1,
+  helpDescription: "ignore"
+)
 
 private let AllOptions = [
   versionOption,
@@ -103,6 +108,7 @@ private let AllOptions = [
   sourceRootOption,
   sdkRootOption,
   productModuleNameOption,
+  ignoreOption,
 ]
 
 struct CallInformation {
@@ -119,6 +125,7 @@ struct CallInformation {
   private let developerDirURL: URL
   private let sourceRootURL: URL
   private let sdkRootURL: URL
+  private let ignoreFileURL: URL
 
   init(processInfo: ProcessInfo) throws {
     try self.init(arguments: processInfo.arguments, environment: processInfo.environment)
@@ -188,6 +195,10 @@ struct CallInformation {
 
       let sdkRootPath = try getFirstArgumentForOption(sdkRootOption, environment["SDKROOT"])
       sdkRootURL = URL(fileURLWithPath: sdkRootPath)
+      
+      let ignoreFilePath = try getFirstArgumentForOption(ignoreOption, environment["IGNORE"])
+      ignoreFileURL = URL(fileURLWithPath: ignoreFilePath)
+      
     } catch let OptionKitError.invalidOption(invalidOption) {
       throw InputParsingError.illegalOption(
         error: "The option '\(invalidOption)' is invalid.",
