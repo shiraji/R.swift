@@ -15,16 +15,17 @@ let ResourceFilename = "R.generated.swift"
 
 do {
   
-  let arguments :String[] = NSProcessInfo.processInfo().arguments.map{String($0 as NSString)}
-  
-  println(arguments)
-  
   let callInformation = try CallInformation(processInfo: ProcessInfo())
-
   let xcodeproj = try Xcodeproj(url: callInformation.xcodeprojURL)
+  
+  print(callInformation.ignoreFilesURL[0])
+  
   let resourceURLs = try xcodeproj.resourcePathsForTarget(callInformation.targetName)
     .map(pathResolver(with: callInformation.URLForSourceTreeFolder))
+    .filter { filterIgnoreFile(path: $0, ignores: callInformation.ignoreFilesURL) }
     .flatMap { $0 }
+  
+  print(resourceURLs)
 
   let resources = Resources(resourceURLs: resourceURLs, fileManager: FileManager.default)
 

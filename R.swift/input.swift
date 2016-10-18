@@ -120,12 +120,12 @@ struct CallInformation {
   let targetName: String
   let bundleIdentifier: String
   let productModuleName: String
+  let ignoreFilesURL: [String]
 
   private let buildProductsDirURL: URL
   private let developerDirURL: URL
   private let sourceRootURL: URL
   private let sdkRootURL: URL
-  private let ignoreFileURL: URL
 
   init(processInfo: ProcessInfo) throws {
     try self.init(arguments: processInfo.arguments, environment: processInfo.environment)
@@ -197,11 +197,11 @@ struct CallInformation {
       sdkRootURL = URL(fileURLWithPath: sdkRootPath)
       
       let ignoreFilePath = try getFirstArgumentForOption(ignoreOption, environment["IGNORE"])
-      ignoreFileURL = URL(fileURLWithPath: ignoreFilePath)
+      ignoreFilesURL = try createIgnoreFilesURL(path: ignoreFilePath, helpString: optionParser.helpStringForCommandName(commandName))
       
     } catch let OptionKitError.invalidOption(invalidOption) {
       throw InputParsingError.illegalOption(
-        error: "The option '\(invalidOption)' is invalid.",
+        error: "The option '\(invalidOption)' is invalid. F!!!!!",
         helpString: optionParser.helpStringForCommandName(commandName)
       )
     }
@@ -221,6 +221,27 @@ struct CallInformation {
   }
 }
 
+private func createIgnoreFilesURL(path: String, helpString: String) throws -> Array<String> {
+  guard let ignoreFileParent = URL(fileURLWithPath: path).baseURL?.absoluteString else {
+    throw InputParsingError.illegalOption(error: "Cannot convert path correctly: \(path)", helpString: helpString)
+  }
+  return readFile(path: path)
+    .map { $0.trimmingCharacters(in: CharacterSet.whitespaces) }
+    .filter { !$0.isEmpty }
+    .filter { $0[$0.startIndex] != "#" }
+    .map { ignoreFileParent + $0 }
+}
+
+private func readFile(path: String) -> Array<String> {
+  do {
+    let data = try String(contentsOfFile: path, encoding: .utf8)
+    let myStrings = data.components(separatedBy: .newlines)
+    return myStrings
+  } catch {
+    return [String]()
+  }
+}
+
 private func getFirstArgument(from options: [Option:[String]], helpString: String) -> (Option, String?) throws -> String {
     return { (option, defaultValue) in
         guard let result = options[option]?.first ?? defaultValue else {
@@ -231,6 +252,35 @@ private func getFirstArgument(from options: [Option:[String]], helpString: Strin
     }
 }
 
+func filterIgnoreFile(path: URL?, ignores: [String]) -> Bool {
+  
+//  ignores.forEach {
+//    ignoreFilePath in
+  do {
+    let regex = try NSRegularExpression(pattern: ignores[0])
+    if var absoluteString = path?.absoluteString { $0 } else { "" }
+    if(regex.matches(in: absoluteString, range: Range(location: 0, length: absoluteString.length))) {
+      return true
+    }
+  } catch {
+    return false
+  }
+  
+//  try ignores.forEach {
+//    ignoreFilePath in
+//    let regex = try NSRegularExpression(pattern: ignoreFilePath)
+//    
+//    guard let absoluteString = path?.absoluteString else
+//    
+//    if(regex.matches(in: path?.absoluteString, range: Range(location: 0, length: path?.absoluteString.length))) {
+//      return(true)
+//    }
+//  } else {
+//    return false
+//  }
+//  return(false)
+}
+
 func pathResolver(with URLForSourceTreeFolder: @escaping (SourceTreeFolder) -> URL) -> (Path) -> URL? {
     return { path in
         switch path {
@@ -238,7 +288,11 @@ func pathResolver(with URLForSourceTreeFolder: @escaping (SourceTreeFolder) -> U
             return URL(fileURLWithPath: absolutePath)
         case let .relativeTo(sourceTreeFolder, relativePath):
             let sourceTreeURL = URLForSourceTreeFolder(sourceTreeFolder)
-            return sourceTreeURL.appendingPathComponent(relativePath)
+            if (relativePath[relativePath.startIndex] == "/") {
+              return sourceTreeURL.appendingPathComponent(relativePath.substring(from: relativePath.index(after: relativePath.startIndex)))
+            } else {
+              return sourceTreeURL.appendingPathComponent(relativePath)
+            }
         }
     }
 }
