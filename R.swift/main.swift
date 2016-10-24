@@ -30,6 +30,8 @@ do {
     .flatMap { $0 }
     .filter { !ignoreFile.match(url: $0 as NSURL) }
   
+  print(resourceURLs)
+  
   let resources = Resources(resourceURLs: resourceURLs, fileManager: FileManager.default)
 
   let generators: [StructGenerator] = [
