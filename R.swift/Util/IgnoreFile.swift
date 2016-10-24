@@ -34,6 +34,27 @@ class IgnoreFile {
   }
 
   func match(url: NSURL) -> Bool {
+    var globObj = glob_t()
+    
+    var paths = [String]()
+    
+    glob(
+      "/Users/isogai_yoshinori/**/*.txt",
+      0,
+      nil,
+      &globObj
+    )
+    
+    for i in 0 ..< Int(globObj.gl_matchc) {
+      let path = String.init(describing: globObj.gl_pathv[i]!)
+      paths.append(path)
+    }
+    
+    print(paths)
+    
+    globfree(&globObj)
+    
+    
     return patterns
       .map { NSURL.init(string: $0) }
       .any { url == $0 }
