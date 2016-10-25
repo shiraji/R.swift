@@ -44,6 +44,11 @@ class IgnoreFile {
   
   private func listFilePaths(pattern: String) -> [String] {
     if (pattern.isEmpty) { return [] }
+  
+
+    wildmatch("/a/**/z", "/a/b/c/d/z", 0)
+    
+    
     
     var globObj = glob_t()
     var paths = [String]()

@@ -114,6 +114,8 @@
 		E2762ACF1CCD0B970009BCAA /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2762ACE1CCD0B970009BCAA /* LocalizableStrings.swift */; };
 		E2762AD01CCD0CF90009BCAA /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2762ACE1CCD0B970009BCAA /* LocalizableStrings.swift */; };
 		E2A918751CD4B61200394F6F /* Unifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A918741CD4B61200394F6F /* Unifiable.swift */; };
+		FAA9BA901DBEF2A000D7D87C /* wildmatch.c in Sources */ = {isa = PBXBuildFile; fileRef = FAA9BA8E1DBEF2A000D7D87C /* wildmatch.c */; };
+		FAA9BA911DBEF2A000D7D87C /* wildmatch.c in Sources */ = {isa = PBXBuildFile; fileRef = FAA9BA8E1DBEF2A000D7D87C /* wildmatch.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +176,8 @@
 		E2762AC61CCCEC2A0009BCAA /* Locale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		E2762ACE1CCD0B970009BCAA /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		E2A918741CD4B61200394F6F /* Unifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unifiable.swift; sourceTree = "<group>"; };
+		FAA9BA8E1DBEF2A000D7D87C /* wildmatch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wildmatch.c; sourceTree = "<group>"; };
+		FAA9BA8F1DBEF2A000D7D87C /* wildmatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wildmatch.h; sourceTree = "<group>"; };
 		FAF521711DBD9716009B221A /* rswift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "rswift-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,6 +275,8 @@
 		D5EA0DEB1A3DF45600FFEBC4 = {
 			isa = PBXGroup;
 			children = (
+				FAA9BA8E1DBEF2A000D7D87C /* wildmatch.c */,
+				FAA9BA8F1DBEF2A000D7D87C /* wildmatch.h */,
 				FAF521711DBD9716009B221A /* rswift-Bridging-Header.h */,
 				D5EA0DF61A3DF45600FFEBC4 /* R.swift */,
 				D57946691B9347A70044D2FC /* Xcode.swift */,
@@ -480,6 +486,7 @@
 				D5B7998A1C1B91A9009EA901 /* Module.swift in Sources */,
 				D5F97E471C1819160066D7C0 /* Resources.swift in Sources */,
 				D56DC76E1C41770500623437 /* AccessLevel.swift in Sources */,
+				FAA9BA911DBEF2A000D7D87C /* wildmatch.c in Sources */,
 				D5F97E4C1C1819160066D7C0 /* Image.swift in Sources */,
 				D5F12D491BDACB90009A2C88 /* Core.swift in Sources */,
 				D586724A1C21FF7D00A760EC /* TypeSequenceProvider.swift in Sources */,
@@ -530,6 +537,7 @@
 				E2762ACF1CCD0B970009BCAA /* LocalizableStrings.swift in Sources */,
 				D5F97E401C1815E70066D7C0 /* AssetFolder.swift in Sources */,
 				D5E890A51DA5A2290059D5ED /* AggregatedStructGenerator.swift in Sources */,
+				FAA9BA901DBEF2A000D7D87C /* wildmatch.c in Sources */,
 				E2762AC71CCCEC2A0009BCAA /* Locale.swift in Sources */,
 				D5F97E3C1C1813A70066D7C0 /* Storyboard.swift in Sources */,
 				D59F723C1C1964B20089767C /* Typealias.swift in Sources */,
