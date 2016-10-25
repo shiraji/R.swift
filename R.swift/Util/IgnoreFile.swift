@@ -35,11 +35,11 @@ class IgnoreFile {
   }
 
   func match(url: NSURL) -> Bool {
-    return patterns
-      .flatMap { listFilePaths(pattern: $0) }
-      .map { NSURL.init(string: $0, relativeTo: ignoreFileURL?.baseURL)?.absoluteURL }
+    return patterns.map { NSURL.init(string: $0, relativeTo: ignoreFileURL?.baseURL)?.absoluteURL }
       .flatMap { $0 }
-      .any { url == $0 as NSURL }
+      .any {
+        wildmatch($0.absoluteString, url.absoluteString, 0x40) == 0
+      }
   }
   
   private func listFilePaths(pattern: String) -> [String] {
