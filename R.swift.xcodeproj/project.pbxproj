@@ -244,6 +244,8 @@
 		D5B7997B1C1B06F5009EA901 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				FAA9BA8E1DBEF2A000D7D87C /* wildmatch.c */,
+				FAA9BA8F1DBEF2A000D7D87C /* wildmatch.h */,
 				D5214C1E1DA6AA9300212FF1 /* Struct+InternalProperties.swift */,
 				3406F94F1DB64E8C00351D0E /* IgnoreFile.swift */,
 				D5B7997E1C1B07EB009EA901 /* ErrorOutput.swift */,
@@ -275,8 +277,6 @@
 		D5EA0DEB1A3DF45600FFEBC4 = {
 			isa = PBXGroup;
 			children = (
-				FAA9BA8E1DBEF2A000D7D87C /* wildmatch.c */,
-				FAA9BA8F1DBEF2A000D7D87C /* wildmatch.h */,
 				FAF521711DBD9716009B221A /* rswift-Bridging-Header.h */,
 				D5EA0DF61A3DF45600FFEBC4 /* R.swift */,
 				D57946691B9347A70044D2FC /* Xcode.swift */,
